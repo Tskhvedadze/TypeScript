@@ -7,11 +7,20 @@
         <title>TypeScript</title>
         <style>
             body {
+                margin: 0;
+                min-height: 100vh;
                 background-color: #000000;
+                display: grid;
+                place-content: center;
+                font-size: 3rem;
+                color: #ffffffff;
             }
         </style>
-        <script src="js/main.js" defer></script>
         <script src="js/exercises.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/copyright.js" defer></script>
     </head>
-    <body></body>
+    <body>
+        <p>Copyright &copy; <span id="year"></span></p>
+    </body>
 </html>
