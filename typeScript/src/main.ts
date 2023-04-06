@@ -59,7 +59,7 @@ let mixed = ['John', 1, false]
 
 myTuple[1] = 42
 
-!OBJECTS
+ !OBJECTS
 let myObj: object
 myObj = []
 
