@@ -385,14 +385,11 @@ console.log(MyBands.data)
 
 MyBands.data = ['Van Halen']
 
+//* Index Signature
 
-*/
-
-// * Index Signature
-
-// interface TransactionObj {
-//     readonly [index: string]: number
-// }
+/ interface TransactionObj {
+/     readonly [index: string]: number
+/ }
 
 interface TransactionObj {
     readonly [index: string]: number
@@ -407,9 +404,9 @@ const todaysTransactions: TransactionObj = {
     Job: 50,
 }
 
-// console.log(todaysTransactions.Pizza)
+//* console.log(todaysTransactions.Pizza)
 
-// console.log(todaysTransactions['Pizza'])
+//* console.log(todaysTransactions['Pizza'])
 
 let prop: string = 'Pizza'
 
@@ -428,7 +425,7 @@ const todaysNet = (transactions: TransactionObj): number => {
 console.log(todaysNet(todaysTransactions))
 
 interface Student {
-    // [key: string]: string | number | number[] | undefined
+    //* [key: string]: string | number | number[] | undefined
 
     name: string
     GPA: number
@@ -441,7 +438,7 @@ const student: Student = {
     classes: [100, 200],
 }
 
-// console.log(student.test)
+//* console.log(student.test)
 
 for (const key in student) {
     console.log(`${key}: ${student[key as keyof Student]}`)
@@ -457,3 +454,84 @@ const logStudentKey = (student: Student, key: keyof Student): void => {
 
 logStudentKey(student, 'GPA')
 logStudentKey(student, 'name')
+
+*/
+
+const echo = <T>(arg: T): T => arg
+
+const isObj = <T>(arg: T): boolean => {
+    return typeof arg === 'object' && !Array.isArray(arg) && arg !== null
+}
+
+// console.log(isObj(true))
+// console.log(isObj('john'))
+// console.log(isObj([1, 2, 3]))
+// console.log(isObj({ name: 'John' }))
+// console.log(isObj(null))
+
+const isTrue = <T>(arg: T): { arg: T; is: boolean } => {
+    if (Array.isArray(arg) && !arg.length) {
+        return { arg, is: false }
+    }
+
+    if (isObj(arg) && !Object.keys(arg as keyof T).length) {
+        return { arg, is: false }
+    }
+
+    return { arg, is: !!arg }
+}
+
+interface BoolCheck<T> {
+    value: T
+    is: boolean
+}
+
+const checkBoolValue = <T>(arg: T): BoolCheck<T> => {
+    if (Array.isArray(arg) && !arg.length) {
+        return { value: arg, is: false }
+    }
+
+    if (isObj(arg) && !Object.keys(arg as keyof T).length) {
+        return { value: arg, is: false }
+    }
+
+    return { value: arg, is: !!arg }
+}
+
+// * Utility types
+
+//? Partial
+
+interface Assignment {
+    studentId: string
+    title: string
+    grade: number
+    verified?: boolean
+}
+
+const updateAssignment = (
+    assign: Assignment,
+    propsToUpdate: Partial<Assignment>,
+): Assignment => {
+    return { ...assign, ...propsToUpdate }
+}
+
+const assign1: Assignment = {
+    studentId: 'compsci123',
+    title: 'Final Project',
+    grade: 0,
+}
+
+console.log(updateAssignment(assign1, { grade: 95 }))
+
+const assignGraded: Assignment = updateAssignment(assign1, { grade: 95 })
+
+//? Required and ReadOnly
+
+const recordAssignment = (assign: Required<Assignment>): Assignment => {
+    return assign
+}
+
+const assignVerified: Readonly<Assignment> = { ...assignGraded, verified: true }
+
+recordAssignment({ ...assignGraded, verified: true })
