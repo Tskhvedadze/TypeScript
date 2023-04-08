@@ -455,7 +455,7 @@ const logStudentKey = (student: Student, key: keyof Student): void => {
 logStudentKey(student, 'GPA')
 logStudentKey(student, 'name')
 
-*/
+
 
 const echo = <T>(arg: T): T => arg
 
@@ -535,3 +535,5 @@ const recordAssignment = (assign: Required<Assignment>): Assignment => {
 const assignVerified: Readonly<Assignment> = { ...assignGraded, verified: true }
 
 recordAssignment({ ...assignGraded, verified: true })
+
+*/
