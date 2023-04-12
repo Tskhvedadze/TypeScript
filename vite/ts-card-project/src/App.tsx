@@ -11,6 +11,11 @@ import {
     Container,
 } from './components'
 
+import { Counter, LoggedIn, User } from './state'
+
+import { ThemeContextProvider } from './context/ThemeContext'
+import { Box } from './context/Box'
+
 function App() {
     /*
   
@@ -59,7 +64,7 @@ function App() {
              </div>
     
              <div className='App'>
-                 <Greet name='Vishwas' isLoggedIn />
+                 <Greet name='Vishwas' isLoggedIn  />
              </div>
          </>
      )
@@ -94,38 +99,36 @@ function App() {
              <Container styles={{ border: '1px solid', padding: '1rem' }} />
          </div>
      )
+
+     
+     return (
+         <div className='App'>
+             <LoggedIn />
+         </div>
+     )
+
+
+     return (
+         <div className='App'>
+             <User />
+         </div>
+     )
     
+     return (
+         <div className='App'>
+             <Counter />
+         </div>
+     )
+
     */
 
-    const personName = {
-        first: 'Bruce',
-        last: 'Wayne',
-    }
-
-    const nameList = [
-        {
-            first: 'Bruce',
-            last: 'Wayne',
-        },
-        {
-            first: 'Clark',
-            last: 'kent',
-        },
-        {
-            first: 'Princess',
-            last: 'Diana',
-        },
-    ]
-
+    //* Context Provider
     return (
-        <>
-            <div className='App'>
-                <PersonList names={nameList} />
-            </div>
-            <div className='App'>
-                <Person name={personName} />
-            </div>
-        </>
+        <div className='App'>
+            <ThemeContextProvider>
+                <Box />
+            </ThemeContextProvider>
+        </div>
     )
 }
 
