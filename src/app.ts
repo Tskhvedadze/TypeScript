@@ -51,7 +51,6 @@ console.log(A, B);
 
 console.log(A, B);
 
-*/
 
 // Classes
 
@@ -98,3 +97,5 @@ accounting.printEmployeeInformation();
 // const accountingCopy = { name: "DUMMY", describe: accounting.describe };
 
 // accountingCopy.describe();
+
+*/
