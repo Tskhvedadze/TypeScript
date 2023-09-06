@@ -1,3 +1,5 @@
+/*
+
 const userName1 = "Max";
 
 let age = 29;
@@ -48,3 +50,51 @@ console.log(A, B);
 [B, A] = [A, B];
 
 console.log(A, B);
+
+*/
+
+// Classes
+
+class Department {
+  // public name: string;
+  private employees: string[] = [];
+
+  constructor(public readonly name: string) {
+    // this.name = n;
+  }
+
+  describe(this: Department) {
+    console.log(`Department: ${this.name}`);
+  }
+
+  addEmployes(employe: string) {
+    this.employees.push(employe);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
+
+class ITDepartment extends Department {
+  admins: string[];
+  private lastReport: string;
+  constructor(name: string, admins: string[]) {
+    super(name);
+    this.admins = admins;
+    this.lastReport = "report";
+  }
+}
+
+const accounting = new ITDepartment("Accounting", ["Max"]);
+accounting.addEmployes("Max");
+accounting.addEmployes("Manu");
+console.log(accounting);
+
+accounting.describe();
+accounting.printEmployeeInformation();
+
+// const accountingCopy = { name: "DUMMY", describe: accounting.describe };
+
+// accountingCopy.describe();
